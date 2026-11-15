@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101b35">
+  <title>Employee Form | JsonPowerDB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <nav class="topbar">
+      <a class="brand" href="#" aria-label="PeopleDesk home">
+        <span class="brand-mark"><i class="bi bi-layers-half"></i></span>
+        <span>people<span class="brand-light">desk</span></span>
+      </a>
+      <div class="topbar-right">
+        <span class="live-dot"></span>
+        <span>JsonPowerDB connected workflow</span>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> EMPLOYEE MANAGEMENT</div>
+        <h1>People are your<br><span>greatest asset.</span></h1>
+        <p>Create and maintain employee records with a simple, secure and streamlined form.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-one"></div>
+        <div class="art-orbit orbit-two"></div>
+        <div class="art-card">
+          <div class="art-card-head"><span></span><span></span><span></span></div>
+          <div class="art-avatar"><i class="bi bi-person-fill"></i></div>
+          <div class="art-line long"></div>
+          <div class="art-line short"></div>
+          <div class="art-bars"><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="float-chip"><i class="bi bi-check2-circle"></i> Records organized</div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">EMPLOYEE DATABASE</div>
+          <h2>Employee details</h2>
+          <p>Enter an employee ID to create a new record or retrieve an existing one.</p>
+        </div>
+        <div class="db-pill"><span class="db-icon"><i class="bi bi-database-check"></i></span><span><strong>EMP-DB</strong><small>EmpData relation</small></span></div>
+      </div>
+
+      <div class="form-card">
+        <div class="form-card-top">
+          <div class="form-card-title"><span class="form-icon"><i class="bi bi-person-vcard"></i></span><div><h3>Employee information</h3><p>All fields are required</p></div></div>
+          <span class="required-note"><span>*</span> Required fields</span>
+        </div>
+
+        <form id="employeeForm" novalidate>
+          <div class="row g-4">
+            <div class="col-12">
+              <label for="empId" class="form-label">Employee ID <span>*</span></label>
+              <div class="input-wrap id-wrap">
+                <span class="input-icon"><i class="bi bi-fingerprint"></i></span>
+                <input class="form-control" id="empId" name="id" type="text" placeholder="Enter unique employee ID" autocomplete="off" required>
+                <span class="field-hint">PRIMARY KEY</span>
+              </div>
+              <div class="field-caption">Enter an ID and press Tab or move out of the field to check the database.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="empName" class="form-label">Employee name <span>*</span></label>
+              <div class="input-wrap"><span class="input-icon"><i class="bi bi-person"></i></span><input class="form-control employee-field" id="empName" name="name" type="text" placeholder="e.g. Aanya Sharma" disabled required></div>
+            </div>
+            <div class="col-md-6">
+              <label for="empSalary" class="form-label">Basic salary <span>*</span></label>
+              <div class="input-wrap"><span class="input-icon currency">₹</span><input class="form-control employee-field" id="empSalary" name="salary" type="number" min="0" step="0.01" placeholder="e.g. 45000" disabled required></div>
+            </div>
+            <div class="col-md-6">
+              <label for="empHra" class="form-label">House rent allowance (HRA) <span>*</span></label>
+              <div class="input-wrap"><span class="input-icon currency">₹</span><input class="form-control employee-field" id="empHra" name="hra" type="number" min="0" step="0.01" placeholder="e.g. 12000" disabled required></div>
+            </div>
+            <div class="col-md-6">
+              <label for="empDa" class="form-label">Dearness allowance (DA) <span>*</span></label>
+              <div class="input-wrap"><span class="input-icon currency">₹</span><input class="form-control employee-field" id="empDa" name="da" type="number" min="0" step="0.01" placeholder="e.g. 5000" disabled required></div>
+            </div>
+            <div class="col-md-6">
+              <label for="empDeduction" class="form-label">Deductions <span>*</span></label>
+              <div class="input-wrap"><span class="input-icon currency">₹</span><input class="form-control employee-field" id="empDeduction" name="deduction" type="number" min="0" step="0.01" placeholder="e.g. 2500" disabled required></div>
+            </div>
+            <div class="col-md-6">
+              <div class="net-pay-card">
+                <span class="net-pay-label">ESTIMATED NET PAY</span>
+                <strong id="netPay">₹0.00</strong>
+                <small>Salary + HRA + DA − deductions</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-area" aria-live="polite">
+            <div id="statusMessage" class="status-message"><i class="bi bi-info-circle"></i><span>Start by entering an Employee ID.</span></div>
+          </div>
+
+          <div class="form-actions">
+            <div class="action-note"><i class="bi bi-shield-check"></i> Changes are saved to JsonPowerDB</div>
+            <div class="button-group">
+              <button type="button" id="resetBtn" class="btn btn-reset" disabled><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
+              <button type="button" id="changeBtn" class="btn btn-change" disabled><i class="bi bi-pencil-square"></i> Change</button>
+              <button type="button" id="saveBtn" class="btn btn-save" disabled><i class="bi bi-cloud-arrow-up"></i> Save record</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <footer class="page-footer">
+        <span>PEOPLEDESK <span class="footer-dot">•</span> EMPLOYEE RECORDS</span>
+        <span>Powered by <strong>JsonPowerDB</strong></span>
+      </footer>
+    </section>
+  </main>
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://login2explore.com/jpdb/resources/js/0.0.4/jpdb-commons.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

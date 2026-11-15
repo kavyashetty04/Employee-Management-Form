@@ -1,0 +1,3 @@
+const JPDB_CONFIG = {
+    connectionToken: "90933397|-31949150791128418|90904386"
+};
